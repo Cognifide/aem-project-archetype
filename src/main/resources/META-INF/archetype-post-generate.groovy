@@ -95,6 +95,8 @@ if (includeCommerce == "n") {
     }
 }
 
+assert new File(rootDir, 'gradlew').setExecutable(true, false);
+
 /**
  * Creates content skeleton based upon singleCountry & languageCountry input from user
  */
