@@ -2,7 +2,15 @@
 
 [![CircleCI](https://circleci.com/gh/adobe/aem-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-project-archetype)
 
-Maven template that creates a minimal, best-practices-based Adobe Experience Manager (AEM) project as a starting point for your website.
+Dual-build (Maven & Gradle) template that creates a minimal, best-practices-based Adobe Experience Manager (AEM) project as a starting point for your website.
+
+Gradle build:
+- dedicated for local AEM development environment,
+- useful for setting up AEM author, publish & dispatcher in a fully automated manner,
+- much better build speed and toolset designed for better AEM developer productivity.
+
+Maven build:
+- dedicated for AEM Cloud Manager (as of Gradle is not supported unfortunately).
 
 ## Documentation
 
