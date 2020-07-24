@@ -8,8 +8,8 @@ description = "${appTitle} - All"
 aem {
     tasks {
         packageCompose {
-            nestPackageProject(":ui.apps")
-            nestPackageProject(":ui.content")
+            nestPackageProject(":ui.apps") { dirPath.set("/apps/${appId}-packages/application/install") }
+            nestPackageProject(":ui.content") { dirPath.set("/apps/${appId}-packages/content/install") }
         }
     }
 }
