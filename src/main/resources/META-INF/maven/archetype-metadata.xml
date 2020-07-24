@@ -418,6 +418,12 @@
         </module>
         <module id="${rootArtifactId}.ui.apps.structure" dir="ui.apps.structure" name="ui.apps.structure">
             <fileSets>
+                <fileSet filtered="true" packaged="false">
+                    <directory></directory>
+                    <includes>
+                        <include>build.gradle.kts</include>
+                    </includes>
+                </fileSet>
                 <fileSet filtered="true" packaged="false" encoding="UTF-8">
                     <directory>src/main/content</directory>
                     <includes>
