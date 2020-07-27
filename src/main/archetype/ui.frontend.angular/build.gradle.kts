@@ -12,6 +12,10 @@ tasks {
         dependsOn("yarn")
 
         val mode = findProperty("webpack.mode")?.toString() ?: "prod"
+        setYarnCommand(when (mode) {
+            "prod" -> "build:production"
+            else -> "build"
+        })
         setYarnCommand(mode)
 
         inputs.property("mode", mode)

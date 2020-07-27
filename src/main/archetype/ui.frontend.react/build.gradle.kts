@@ -10,11 +10,6 @@ description = "${appTitle} - UI Frontend"
 tasks {
     register<YarnTask>("webpack") {
         dependsOn("yarn")
-
-        val mode = findProperty("webpack.mode")?.toString() ?: "prod"
-        setYarnCommand(mode)
-
-        inputs.property("mode", mode)
         inputs.file("package.json")
         inputs.dir("src")
         outputs.dir("dist")
