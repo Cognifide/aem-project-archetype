@@ -1,7 +1,7 @@
 rm -fr mysite
 
 mvn -B archetype:generate \
- -D archetypeGroupId=com.adobe.granite.archetypes \
+ -D archetypeGroupId=com.adobe.aem \
  -D archetypeArtifactId=aem-project-archetype \
  -D archetypeVersion=24-SNAPSHOT \
  -D aemVersion=cloud \

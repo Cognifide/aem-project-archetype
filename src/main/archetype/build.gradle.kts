@@ -2,7 +2,8 @@ import com.cognifide.gradle.aem.bundle.tasks.bundle
 import com.moowork.gradle.node.NodeExtension
 
 plugins {
-    id("com.cognifide.aem.common")
+    id("com.cognifide.aem.instance.local")
+    id("com.cognifide.environment")
 }
 
 allprojects {
