@@ -9,3 +9,5 @@
 .idea/
 *.iml
 
+# Gradle Environment Plugin
+dispatcher/src/conf.d/variables/default.vars
