@@ -115,6 +115,7 @@ aem {
     }
     instance {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
+            enableReplicationAgent("author", "publish", publishInstance)
             deployPackage("com.neva.felix:search-webconsole-plugin:1.3.0")
         }
     }
