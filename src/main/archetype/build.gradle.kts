@@ -115,7 +115,8 @@ aem {
     }
     instance {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
-            enableReplicationAgent("author", "publish", publishInstance)
+            enableReplicationAgent("author", "publish", publishInstance) { condition { once() && instance.author} }
+            enableReplicationAgent("publish", "flush", "http://localhost:80/dispatcher/invalidate.cache") { condition { once() && instance.publish } }
             deployPackage("com.neva.felix:search-webconsole-plugin:1.3.0")
         }
     }
@@ -160,10 +161,11 @@ environment { // https://github.com/Cognifide/gradle-environment-plugin
         }
     }
     hosts {
-        "http://${appId}.com" { tag("live") }
+        "http://publish" { tag("publish") }
+        "http://flush" { tag("flush") }
     }
     healthChecks {
-        http("Site 'live'", "http://${appId}.com/us/en.html", "${appTitle}")
+        http("Site '${appTitle}'", "http://publish/us/en.html", "${appTitle}")
         http("Author Sites Editor", "http://localhost:4502/sites.html") {
             containsText("Sites")
             options { basicCredentials = aem.authorInstance.credentials }

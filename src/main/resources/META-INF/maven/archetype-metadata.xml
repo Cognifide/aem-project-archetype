@@ -452,6 +452,7 @@
         <include>build.gradle.kts</include>
         <include>settings.gradle.kts</include>
         <include>buildSrc/build.gradle.kts</include>
+        <include>src/**</include>
       </includes>
     </fileSet>
     <fileSet>

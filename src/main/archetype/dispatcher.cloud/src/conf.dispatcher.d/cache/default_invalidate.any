@@ -14,3 +14,9 @@
 	/type "allow"
 	/glob "${AEM_IP}"
 }
+# TODO remove it finally when fixed!
+/0003
+{
+    /glob "*"
+    /type "allow"
+}
