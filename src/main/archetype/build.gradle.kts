@@ -1,7 +1,6 @@
 import com.cognifide.gradle.aem.bundle.tasks.bundle
 import com.cognifide.gradle.aem.common.instance.local.Source
 import com.cognifide.gradle.aem.common.instance.local.OpenMode
-import com.moowork.gradle.node.NodeExtension
 
 plugins {
     id("com.cognifide.aem.instance.local")
@@ -77,14 +76,6 @@ allprojects {
             "compileOnly"("com.adobe.aem:uber-jar:6.5.0:apis")
 
             "testImplementation"("io.wcm:io.wcm.testing.aem-mock.junit5:2.5.2")
-        }
-    }
-
-    plugins.withId("com.github.node-gradle.node") {
-        configure<NodeExtension> {
-            version = "12.16.2"
-            yarnVersion = "1.22.4"
-            download = true
         }
     }
 }

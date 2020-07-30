@@ -1,20 +1,25 @@
+import com.cognifide.gradle.aem.common.tasks.SyncFileTask
+import com.github.dkorotych.gradle.maven.exec.MavenExec
+
 plugins {
-    id("com.cognifide.aem.bundle")
-    id("maven-publish")
+    id("com.cognifide.aem.common")
+    id("com.github.dkorotych.gradle-maven-exec")
 }
+
 description = "${appTitle} - Core"
 
-dependencies {
-    testImplementation("uk.org.lidalia:slf4j-test:1.1.0")
-    testImplementation("org.mockito:mockito-core:2.25.1")
-    testImplementation("org.mockito:mockito-junit-jupiter:2.25.1")
-    testImplementation("junit-addons:junit-addons:1.4")
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
+aem {
+    tasks {
+        val bundleBuild by registering(MavenExec::class) {
+            goals("clean", "install")
+            inputs.dir("src")
+            inputs.file("pom.xml")
+            outputs.dir("target")
+        }
+        val bundleDeploy by registering(SyncFileTask::class) {
+            dependsOn(bundleBuild)
+            files.from(common.recentFileProvider("target"))
+            syncFile { awaitIf { osgi.installBundle(it); true } }
         }
     }
 }

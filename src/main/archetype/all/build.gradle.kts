@@ -1,23 +1,20 @@
+import com.cognifide.gradle.aem.common.tasks.SyncFileTask
+import com.github.dkorotych.gradle.maven.exec.MavenExec
+
 plugins {
-    id("com.cognifide.aem.package")
-    id("maven-publish")
+    id("com.cognifide.aem.common")
+    id("com.github.dkorotych.gradle-maven-exec")
 }
 
 description = "${appTitle} - All"
 
 aem {
     tasks {
-        packageCompose {
-            nestPackageProject(":ui.apps") { dirPath.set("/apps/${appId}-packages/application/install") }
-            nestPackageProject(":ui.content") { dirPath.set("/apps/${appId}-packages/content/install") }
-        }
-    }
-}
+        val packageBuild by registering() {
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            artifact(common.publicationArtifact(tasks.packageCompose))
+        }
+        val packageDeploy by registering(SyncFileTask::class) {
+
         }
     }
 }
