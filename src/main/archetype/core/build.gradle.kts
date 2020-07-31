@@ -16,10 +16,16 @@ aem {
             inputs.file("pom.xml")
             outputs.dir("target")
         }
-        val bundleDeploy by registering(SyncFileTask::class) {
+        val bundleInstall by registering(SyncFileTask::class) {
             dependsOn(bundleBuild)
             files.from(common.recentFileProvider("target"))
             syncFile { awaitIf { osgi.installBundle(it); true } }
+        }
+        build {
+            dependsOn(bundleBuild)
+        }
+        clean {
+            delete("target")
         }
     }
 }

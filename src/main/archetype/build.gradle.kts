@@ -90,7 +90,8 @@ common {
             dependsOn(
                     ":instanceSetup",
                     ":environmentUp",
-                    ":all:packageDeploy",
+                    ":ui.apps:packageDeploy",
+                    ":ui.content:packageDeploy",
                     ":environmentReload",
                     ":environmentAwait"
             )

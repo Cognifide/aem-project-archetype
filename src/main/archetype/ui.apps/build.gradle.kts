@@ -12,7 +12,7 @@ description = "${appTitle} - UI apps"
 aem {
     tasks {
         val packageBuild by registering(MavenExec::class) {
-            dependsOn(":core:bundleBuild")
+            dependsOn(":core:bundleBuild", ":ui.frontend:runNode")
             goals("clean", "install")
             inputs.dir("src")
             inputs.file("pom.xml")
@@ -22,6 +22,12 @@ aem {
             dependsOn(packageBuild)
             files.from(common.recentFileProvider("target"))
             syncFile { awaitIf { packageManager.deploy(it) } }
+        }
+        build {
+            dependsOn(packageBuild)
+        }
+        clean {
+            delete("target")
         }
     }
 }
