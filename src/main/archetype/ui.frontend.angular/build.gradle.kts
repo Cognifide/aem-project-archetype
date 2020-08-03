@@ -12,7 +12,10 @@ tasks {
     val runNode by registering(MavenExec::class) {
         goals("clean", "package")
         inputs.dir("src")
-        inputs.files(fileTree(projectDir) { include("pom.xml", "*.js", "*.json") })
+        inputs.files(fileTree(projectDir) {
+            include("pom.xml", "*.js", "*.json")
+            exclude("package-lock.json")
+        })
         outputs.dirs("dist", clientlibsPath)
     }
     build {
