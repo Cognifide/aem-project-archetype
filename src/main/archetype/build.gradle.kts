@@ -99,7 +99,8 @@ common {
             dependsOn(
                     ":instanceSetup",
                     ":environmentUp",
-                    ":all:packageDeploy",
+                    ":ui.apps:packageDeploy",
+                    ":ui.content:packageDeploy",
                     ":environmentReload",
                     ":environmentAwait"
             )
@@ -268,9 +269,13 @@ fork {
                     description = "Open web browser when instances are up."
                     select(OpenMode.values().map { it.name.toLowerCase() }, OpenMode.ALWAYS.name.toLowerCase())
                 },
-                "localInstanceOpenPath" to {
-                    label = "Open Path"
-                    text("/")
+                "localInstanceOpenAuthorPath" to {
+                    label = "Open Author Path"
+                    text("/aem/start.html")
+                },
+                "localInstanceOpenPublishPath" to {
+                    label = "Open Publish Path"
+                    text("/crx/packmgr")
                 }
         ))
 

@@ -28,7 +28,7 @@ instance.local-author.httpUrl={{instanceAuthorHttpUrl}}
 instance.local-author.type={{instanceType}}
 instance.local-author.runModes={{localInstanceRunModes}}
 instance.local-author.jvmOpts={{localInstanceJvmOpts}}
-instance.local-author.openPath={{localInstanceOpenPath}}
+instance.local-author.openPath={{localInstanceOpenAuthorPath}}
 {% endif %}
 
 {% if instancePublishHttpUrl is not empty %}
@@ -36,7 +36,7 @@ instance.local-publish.httpUrl={{instancePublishHttpUrl}}
 instance.local-publish.type={{instanceType}}
 instance.local-publish.runModes={{localInstanceRunModes}}
 instance.local-publish.jvmOpt={{localInstanceJvmOpts}}
-instance.local-publish.openPath={{localInstanceOpenPath}}
+instance.local-publish.openPath={{localInstanceOpenPublishPath}}
 {% endif %}
 
 {% if instanceType == 'local' %}
