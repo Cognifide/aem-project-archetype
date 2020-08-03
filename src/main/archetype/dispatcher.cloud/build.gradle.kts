@@ -11,7 +11,7 @@ tasks {
     val zipBuild by registering(MavenExec::class) {
         goals("clean", "package")
         inputs.dir("src")
-        inputs.file("assembly.xml")
+        inputs.files("pom.xml", "assembly.xml")
         outputs.dir("target")
     }
     build {

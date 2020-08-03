@@ -13,7 +13,7 @@ tasks {
         goals("clean", "package")
         inputs.dir("src")
         inputs.files(fileTree(projectDir) {
-            include("pom.xml", "*.js", "*.json")
+            include("*.xml", "*.js", "*.json", ".eslint*", ".babelrc")
             exclude("package-lock.json")
         })
         outputs.dirs("dist", clientlibsPath)

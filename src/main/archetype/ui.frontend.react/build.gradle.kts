@@ -11,9 +11,9 @@ tasks {
     val clientlibsPath = "../ui.apps/src/main/content/jcr_root/apps/${appId}/clientlibs"
     val runNode by registering(MavenExec::class) {
         goals("clean", "package")
-        inputs.dir("src")
+        inputs.dirs("src", "utils", "public")
         inputs.files(fileTree(projectDir) {
-            include("pom.xml", "*.js", "*.json")
+            include("*.xml", "*.js", "*.json")
             exclude("package-lock.json")
         })
         outputs.dirs("dist", clientlibsPath)
