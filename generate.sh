@@ -1,9 +1,9 @@
 rm -fr mysite
 
 mvn -B archetype:generate \
- -D archetypeGroupId=com.adobe.aem \
+ -D archetypeGroupId=com.cognifide.aem \
  -D archetypeArtifactId=aem-project-archetype \
- -D archetypeVersion=24-SNAPSHOT \
+ -D archetypeVersion=24-hybrid-SNAPSHOT \
  -D aemVersion=cloud \
  -D appTitle="My Site" \
  -D appId="mysite" \
