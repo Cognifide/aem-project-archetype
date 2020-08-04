@@ -7,7 +7,7 @@ description = "${appTitle} - UI apps structure"
 aem {
     tasks {
         packageCompose {
-            vaultDefinition {
+            vault {
                 property("cloudManagerTarget", "none")
                 filters(
                     "/apps",

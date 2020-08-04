@@ -8,7 +8,7 @@ description = "${appTitle} - UI content"
 aem {
     tasks {
         packageCompose {
-            vaultDefinition {
+            vault {
                 property("cloudManagerTarget", "none")
             }
         }

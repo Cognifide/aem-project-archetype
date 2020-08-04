@@ -10,7 +10,7 @@ aem {
         packageCompose {
             dependsOn(":ui.frontend:webpack")
             installBundleProject(":core")
-            vaultDefinition {
+            vault {
                 property("cloudManagerTarget", "none")
             }
         }
