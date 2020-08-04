@@ -11,10 +11,12 @@ description = "${appTitle} - All"
 aem {
     tasks {
         val packageBuild by registering(MavenExec::class) {
-            dependsOn(":ui.apps:packageBuild", ":ui.content:packageBuild")
+            dependsOn(":core:bundleBuild", ":ui.apps:packageBuild", ":ui.content:packageBuild")
             goals("clean", "install")
             inputs.dir("src")
             inputs.file("pom.xml")
+            inputs.file(common.recentFileProvider("../ui.apps/target"))
+            inputs.file(common.recentFileProvider("../ui.content/target"))
             outputs.dir("target")
         }
         val packageDeploy by registering(SyncFileTask::class) {

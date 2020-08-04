@@ -90,8 +90,7 @@ common {
             dependsOn(
                     ":instanceSetup",
                     ":environmentUp",
-                    ":ui.apps:packageDeploy",
-                    ":ui.content:packageDeploy",
+                    ":all:packageDeploy",
                     ":environmentReload",
                     ":environmentAwait"
             )
@@ -107,8 +106,8 @@ aem {
     }
     instance {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
-            enableReplicationAgent("author", "publish", publishInstance) { condition { once() && instance.author} }
-            enableReplicationAgent("publish", "flush", "http://localhost:80/dispatcher/invalidate.cache") { condition { once() && instance.publish } }
+            configureReplicationAgentAuthor("publish") { enable(publishInstance) }
+            configureReplicationAgentPublish("flush") { enable("http://localhost:80/dispatcher/invalidate.cache") }
             deployPackage("com.neva.felix:search-webconsole-plugin:1.3.0")
         }
     }
