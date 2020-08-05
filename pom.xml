@@ -26,9 +26,9 @@
     <description>AEM multi-module archetype.</description>
 
     <scm>
-        <connection>scm:git:https://github.com/adobe/aem-project-archetype.git</connection>
-        <developerConnection>scm:git:git@github.com:adobe/aem-project-archetype.git</developerConnection>
-        <url>https://github.com/adobe/aem-project-archetype/tree/master/</url>
+        <connection>scm:git:https://github.com/Cognifide/aem-project-archetype.git</connection>
+        <developerConnection>scm:git:git@github.com:Cognifide/aem-project-archetype.git</developerConnection>
+        <url>https://github.com/Cognifide/aem-project-archetype/tree/master/</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -144,7 +144,7 @@
         <repository>
             <id>bintray-cognifide-maven-public</id>
             <name>cognifide-maven-public</name>
-            <url>https://api.bintray.com/maven/cognifide/maven-public/aem-project-archetype/;publish=1</url>
+            <url>https://api.bintray.com/maven/cognifide/maven-public/aem-project-archetype-hybrid/;publish=1;override=1</url>
         </repository>
     </distributionManagement>
 </project>
