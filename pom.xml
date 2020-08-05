@@ -129,15 +129,9 @@
 
     <distributionManagement>
         <repository>
-            <id>${releaseRepository-Id}</id>
-            <name>${releaseRepository-Name}</name>
-            <url>${releaseRepository-URL}</url>
+            <id>bintray-cognifide-maven-public</id>
+            <name>cognifide-maven-public</name>
+            <url>https://api.bintray.com/maven/cognifide/maven-public/aem-project-archetype/;publish=1</url>
         </repository>
-        <snapshotRepository>
-            <id>${snapshotRepository-Id}</id>
-            <name>${snapshotRepository-Name}</name>
-            <url>${snapshotRepository-URL}</url>
-            <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
     </distributionManagement>
 </project>
