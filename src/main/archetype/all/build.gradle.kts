@@ -15,8 +15,8 @@ aem {
             goals("clean", "install")
             inputs.dir("src")
             inputs.file("pom.xml")
-            inputs.file(common.recentFileProvider("../ui.apps/target"))
-            inputs.file(common.recentFileProvider("../ui.content/target"))
+            inputs.file(common.recentFileProvider(project(":ui.apps").file("target")))
+            inputs.file(common.recentFileProvider(project(":ui.content").file("target")))
             outputs.dir("target")
         }
         val packageDeploy by registering(SyncFileTask::class) {

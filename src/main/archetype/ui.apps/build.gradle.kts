@@ -15,7 +15,7 @@ aem {
             dependsOn(":core:bundleBuild", ":ui.frontend:runNode")
             goals("clean", "install")
             inputs.dir("src")
-            inputs.file(common.recentFileProvider("../core/target"))
+            inputs.file(common.recentFileProvider(project(":core").file("target")))
             inputs.file("pom.xml")
             outputs.dir("target")
         }
