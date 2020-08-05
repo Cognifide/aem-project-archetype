@@ -144,7 +144,7 @@
         <repository>
             <id>bintray-cognifide-maven-public</id>
             <name>cognifide-maven-public</name>
-            <url>https://api.bintray.com/maven/cognifide/maven-public/aem-project-archetype/;publish=1</url>
+            <url>https://api.bintray.com/maven/cognifide/maven-public/aem-project-archetype-dual/;publish=1;override=1</url>
         </repository>
     </distributionManagement>
 </project>
