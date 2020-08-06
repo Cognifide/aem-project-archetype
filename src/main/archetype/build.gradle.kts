@@ -85,15 +85,21 @@ defaultTasks("develop")
 common {
     tasks {
         registerSequence("develop", {
-            description = "Builds and deploys AEM application to instances, cleans environment"
+            description = "Builds and deploys AEM application to instances (optionally cleans environment)"
         }) {
-            dependsOn(
-                    ":instanceSetup",
-                    ":environmentUp",
-                    ":all:packageDeploy",
-                    ":environmentReload",
-                    ":environmentAwait"
-            )
+            when (prop.string("instance.type")) {
+                "local" -> dependsOn(
+                        ":instanceSetup",
+                        ":environmentUp",
+                        ":all:packageDeploy",
+                        ":environmentReload",
+                        ":environmentAwait"
+                )
+                else -> dependsOn(
+                        ":instanceSetup",
+                        ":all:packageDeploy"
+                )
+            }
         }
     }
 }
