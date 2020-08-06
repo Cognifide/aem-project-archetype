@@ -18,6 +18,8 @@ Gradle empowered Maven template that creates a minimal, best-practices-based Ado
 - Gradle designated for local AEM development with **improved build performance**,
 - Maven designated for CI/CD and AEM Cloud Manager builds.
 
+Source code: [here](https://github.com/Cognifide/aem-project-archetype/tree/hybrid-build/src/main/archetype)
+
 Archetype usage:
 
 ```shell script
@@ -39,7 +41,7 @@ mvn -B archetype:generate \
 - Gradle designated for local AEM development with **best build performance**,
 - Maven designated for CI/CD and AEM Cloud Manager builds.
 
-Source code: [here](https://github.com/Cognifide/aem-project-archetype/tree/hybrid-build/src/main/archetype)
+Source code: [here](https://github.com/Cognifide/aem-project-archetype/tree/dual-build/src/main/archetype)
 
 Archetype usage:
 
