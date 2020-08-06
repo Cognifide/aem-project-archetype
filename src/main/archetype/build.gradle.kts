@@ -96,7 +96,7 @@ common {
                         ":environmentAwait"
                 )
                 else -> dependsOn(
-                        ":instanceSetup",
+                        ":instanceProvision",
                         ":all:packageDeploy"
                 )
             }
