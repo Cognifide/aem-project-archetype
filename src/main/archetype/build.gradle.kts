@@ -86,6 +86,7 @@ common {
     tasks {
         registerSequence("develop", {
             description = "Builds and deploys AEM application to instances (optionally cleans environment)"
+            dependsOn(":requireProps")
         }) {
             when (prop.string("instance.type")) {
                 "local" -> dependsOn(
