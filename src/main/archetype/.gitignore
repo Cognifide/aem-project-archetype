@@ -98,3 +98,6 @@ node/
 # Tests
 coverage/
 reports/
+
+# Gradle
+!/gradle/wrapper/gradle-wrapper.jar
