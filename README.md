@@ -10,7 +10,7 @@ Gradle empowered Maven template that creates a minimal, best-practices-based Ado
 - useful for setting up AEM author, publish & dispatcher in a fully automated manner,
 - much better build speed and toolset designed for better AEM developer productivity.
 
-### Hybrid Gradle+Maven build
+### Hybrid Gradle&Maven build
 
 - is a combination of Gradle invoking Maven for building artifacts (packages, bundles, clientlibs), 
 - artifacts are cached by Gradle, so they are only incrementally rebuilt (only if changes are detected),
