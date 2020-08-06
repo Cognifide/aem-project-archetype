@@ -2,15 +2,62 @@
 
 [![CircleCI](https://circleci.com/gh/adobe/aem-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-project-archetype)
 
-Dual-build (Maven & Gradle) template that creates a minimal, best-practices-based Adobe Experience Manager (AEM) project as a starting point for your website.
+Gradle empowered Maven template that creates a minimal, best-practices-based Adobe Experience Manager (AEM) project as a starting point for your website.
 
-Gradle build:
+## Gradle build
+
 - dedicated for local AEM development environment,
 - useful for setting up AEM author, publish & dispatcher in a fully automated manner,
 - much better build speed and toolset designed for better AEM developer productivity.
 
-Maven build:
+## Hybrid Gradle+Maven build
+
+- is a combination of Gradle invoking Maven for building artifacts (packages, bundles, clientlibs), 
+- artifacts are cached by Gradle, so they are only incrementally rebuilt (only if changes are detected),
+- artifacts built by Maven are later deployed by [GAP](https://github.com/Cognifide/gradle-aem-plugin) using advanced techniques (deep instance health checking, deploy avoidance and more).
+- Gradle designated for local AEM development with **improved** build performance,
+- Maven designated for CI/CD and AEM Cloud Manager builds.
+
+Archetype usage:
+
+```shell script
+mvn -B archetype:generate \
+ -D archetypeGroupId=com.cognifide.aem \
+ -D archetypeArtifactId=aem-project-archetype-hybrid \
+ -D archetypeVersion=24.PREVIEW \
+ -D aemVersion=cloud \
+ -D appTitle="My Site" \
+ -D appId="mysite" \
+ -D groupId="com.mysite" \
+ -D frontendModule=general \
+ -D includeExamples=n
+```
+
+## Dual build 
+
+- assumes usage of 2 completely separate build configurations (Maven & Gradle) effectively providing same artifacts (packages, bundles, clientlibs),
+- Gradle designated for local AEM development with **best build performance**,
+- Maven designated for CI/CD and AEM Cloud Manager builds.
+
+Archetype usage:
+
+```shell script
+mvn -B archetype:generate \
+ -D archetypeGroupId=com.cognifide.aem \
+ -D archetypeArtifactId=aem-project-archetype-dual \
+ -D archetypeVersion=24.PREVIEW \
+ -D aemVersion=cloud \
+ -D appTitle="My Site" \
+ -D appId="mysite" \
+ -D groupId="com.mysite" \
+ -D frontendModule=general \
+ -D includeExamples=n
+```
+
+## Maven build
+
 - dedicated for AEM Cloud Manager (as of Gradle is not supported unfortunately).
+
 
 ## Documentation
 
