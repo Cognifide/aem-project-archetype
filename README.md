@@ -10,12 +10,12 @@ Gradle empowered Maven template that creates a minimal, best-practices-based Ado
 - useful for setting up AEM author, publish & dispatcher in a fully automated manner,
 - much better build speed and toolset designed for better AEM developer productivity.
 
-## Hybrid Gradle+Maven build
+### Hybrid Gradle+Maven build
 
 - is a combination of Gradle invoking Maven for building artifacts (packages, bundles, clientlibs), 
 - artifacts are cached by Gradle, so they are only incrementally rebuilt (only if changes are detected),
 - artifacts built by Maven are later deployed by [GAP](https://github.com/Cognifide/gradle-aem-plugin) using advanced techniques (deep instance health checking, deploy avoidance and more).
-- Gradle designated for local AEM development with **improved** build performance,
+- Gradle designated for local AEM development with **improved build performanc**,
 - Maven designated for CI/CD and AEM Cloud Manager builds.
 
 Archetype usage:
@@ -33,7 +33,7 @@ mvn -B archetype:generate \
  -D includeExamples=n
 ```
 
-## Dual build 
+### Dual Gradle&Maven build 
 
 - assumes usage of 2 completely separate build configurations (Maven & Gradle) effectively providing same artifacts (packages, bundles, clientlibs),
 - Gradle designated for local AEM development with **best build performance**,
