@@ -22,62 +22,6 @@ allprojects {
         archiveBaseName.set(provider { "${rootProject.name}-${project.name}" })
         destinationDirectory.set(layout.projectDirectory.dir("target"))
     }
-
-    plugins.withId("java") {
-        tasks.withType<JavaCompile>().configureEach {
-            with(options) {
-                sourceCompatibility = "1.8"
-                targetCompatibility = "1.8"
-                encoding = "UTF-8"
-            }
-        }
-
-        tasks.withType<Test>().configureEach {
-            useJUnitPlatform()
-            testLogging.showStandardStreams = true
-        }
-
-        dependencies {
-            "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-            "testImplementation"("org.junit.jupiter:junit-jupiter-api:5.6.0")
-        }
-    }
-
-    plugins.withId("com.cognifide.aem.bundle") {
-        tasks {
-            withType<Jar> {
-                bundle {
-                    bnd("-plugin org.apache.sling.caconfig.bndplugin.ConfigurationClassScannerPlugin")
-                }
-            }
-        }
-
-        dependencies {
-            "compileOnly"("org.osgi:org.osgi.annotation.versioning:1.1.0")
-            "compileOnly"("org.osgi:org.osgi.annotation.bundle:1.0.0")
-            "compileOnly"("org.osgi:org.osgi.service.metatype.annotations:1.4.0")
-            "compileOnly"("org.osgi:org.osgi.service.component.annotations:1.4.0")
-            "compileOnly"("org.osgi:org.osgi.service.component:1.4.0")
-            "compileOnly"("org.osgi:org.osgi.service.cm:1.6.0")
-            "compileOnly"("org.osgi:org.osgi.service.event:1.3.1")
-            "compileOnly"("org.osgi:org.osgi.service.log:1.4.0")
-            "compileOnly"("org.osgi:org.osgi.resource:1.0.0")
-            "compileOnly"("org.osgi:org.osgi.framework:1.9.0")
-            "compileOnly"("org.apache.sling:org.apache.sling.models.api:1.3.6")
-            "compileOnly"("org.apache.sling:org.apache.sling.servlets.annotations:1.2.4")
-            "compileOnly"("javax.servlet:javax.servlet-api:3.1.0")
-            "compileOnly"("javax.servlet.jsp:jsp-api:2.1")
-            "compileOnly"("javax.annotation:javax.annotation-api:1.3.2")
-            "compileOnly"("javax.jcr:jcr:2.0")
-            "compileOnly"("com.day.cq.wcm:cq-wcm-taglib:5.7.4")
-            "compileOnly"("org.slf4j:slf4j-api:1.7.25")
-            "compileOnly"("com.adobe.cq:core.wcm.components.core:2.8.0")
-
-            "compileOnly"("com.adobe.aem:uber-jar:6.5.0:apis")
-
-            "testImplementation"("io.wcm:io.wcm.testing.aem-mock.junit5:2.5.2")
-        }
-    }
 }
 
 defaultTasks("develop")
@@ -106,11 +50,6 @@ common {
 }
 
 aem {
-    `package` {
-        validator { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/package-plugin.md#crx-package-validation
-            base("com.adobe.acs:acs-aem-commons-oakpal-checks:4.4.0")
-        }
-    }
     instance {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
             configureReplicationAgentAuthor("publish") { enable(publishInstance) }
@@ -153,7 +92,8 @@ environment { // https://github.com/Cognifide/gradle-environment-plugin
                     watchRootDir(
                             "dispatcher/src/conf.d",
                             "dispatcher/src/conf.dispatcher.d",
-                            "src/environment/httpd")
+                            "src/environment/httpd"
+                    )
                 }
             }
         }
@@ -180,7 +120,7 @@ tasks {
 
 fork {
     properties {
-        define("Instance", mapOf(
+        define("Instance Options", mapOf(
                 "instanceType" to {
                     label = "Type"
                     select("local", "remote")
@@ -221,10 +161,33 @@ fork {
                     description = "Check if package is actually deployed on instance.\n" +
                             "By default faster heuristic is used which does not require downloading deployed packages eagerly."
                     checkbox(false)
+                }
+        ))
+
+        define("Instance Checking", mapOf(
+                "instanceCheckHelpEnabled" to {
+                    label = "Help"
+                    description = "Tries to start bundles automatically when instance is not stable longer time."
+                    checkbox(true)
                 },
-                "instanceAwaitUpHelpEnabled" to {
-                    label = "Await Up Helping"
-                    description = "Tries to start bundles automatically when instance is not stable longer time"
+                "instanceCheckBundlesEnabled" to {
+                    label = "Bundles"
+                    description = "Awaits for all bundles in active state."
+                    checkbox(true)
+                },
+                "instanceCheckInstallerEnabled" to {
+                    label = "Installer"
+                    description = "Awaits for Sling OSGi Installer not processing any resources."
+                    checkbox(true)
+                },
+                "instanceCheckEventsEnabled" to {
+                    label = "Events"
+                    description = "Awaits period of time free of OSGi events incoming."
+                    checkbox(true)
+                },
+                "instanceCheckComponentsEnabled" to {
+                    label = "Components"
+                    description = "Awaits for active platform and application specific components."
                     checkbox(true)
                 }
         ))
