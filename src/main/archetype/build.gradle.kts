@@ -162,7 +162,8 @@ environment { // https://github.com/Cognifide/gradle-environment-plugin
                     watchRootDir(
                             "dispatcher/src/conf.d",
                             "dispatcher/src/conf.dispatcher.d",
-                            "src/environment/httpd")
+                            "src/environment/httpd"
+                    )
                 }
             }
         }
@@ -189,7 +190,7 @@ tasks {
 
 fork {
     properties {
-        define("Instance", mapOf(
+        define("Instance Options", mapOf(
                 "instanceType" to {
                     label = "Type"
                     select("local", "remote")
@@ -230,10 +231,33 @@ fork {
                     description = "Check if package is actually deployed on instance.\n" +
                             "By default faster heuristic is used which does not require downloading deployed packages eagerly."
                     checkbox(false)
+                }
+        ))
+
+        define("Instance Checking", mapOf(
+                "instanceCheckHelpEnabled" to {
+                    label = "Help"
+                    description = "Tries to start bundles automatically when instance is not stable longer time."
+                    checkbox(true)
                 },
-                "instanceAwaitUpHelpEnabled" to {
-                    label = "Await Up Helping"
-                    description = "Tries to start bundles automatically when instance is not stable longer time"
+                "instanceCheckBundlesEnabled" to {
+                    label = "Bundles"
+                    description = "Awaits for all bundles in active state."
+                    checkbox(true)
+                },
+                "instanceCheckInstallerEnabled" to {
+                    label = "Installer"
+                    description = "Awaits for Sling OSGi Installer not processing any resources."
+                    checkbox(true)
+                },
+                "instanceCheckEventsEnabled" to {
+                    label = "Events"
+                    description = "Awaits period of time free of OSGi events incoming."
+                    checkbox(true)
+                },
+                "instanceCheckComponentsEnabled" to {
+                    label = "Components"
+                    description = "Awaits for active platform and application specific components."
                     checkbox(true)
                 }
         ))

@@ -23,7 +23,12 @@ instance.author={{instanceAuthorOnly}}
 instance.publish={{instancePublishOnly}}
 instance.provision.enabled={{instanceProvisionEnabled}}
 instance.provision.deployPackage.strict={{instanceProvisionDeployPackageStrict}}
-instance.awaitUp.help.enabled={{ instanceAwaitUpHelpEnabled }}
+
+instance.check.help.enabled={{ instanceCheckHelpEnabled }}
+instance.check.bundles.enabled={{ instanceCheckBundlesEnabled }}
+instance.check.installer.enabled={{ instanceCheckInstallerEnabled }}
+instance.check.events.enabled={{ instanceCheckEventsEnabled }}
+instance.check.components.enabled={{ instanceCheckComponentsEnabled }}
 
 {% if instanceAuthorHttpUrl is not empty %}
 instance.local-author.httpUrl={{instanceAuthorHttpUrl}}
