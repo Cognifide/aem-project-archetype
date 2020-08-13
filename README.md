@@ -26,7 +26,7 @@ Archetype usage:
 mvn -B archetype:generate \
  -D archetypeGroupId=com.cognifide.aem \
  -D archetypeArtifactId=aem-project-archetype-hybrid \
- -D archetypeVersion=24.PREVIEW \
+ -D archetypeVersion=24.PREVIEW2 \
  -D aemVersion=cloud \
  -D appTitle="My Site" \
  -D appId="mysite" \
