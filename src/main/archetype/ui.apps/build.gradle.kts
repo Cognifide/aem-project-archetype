@@ -9,27 +9,21 @@ plugins {
 
 description = "${appTitle} - UI apps"
 
-aem {
-    tasks {
-        val packageBuild by registering(MavenExec::class) {
-            dependsOn(":core:bundleBuild", ":ui.frontend:runNode")
-            goals("clean", "install")
-            inputs.dir("src")
-            inputs.file("pom.xml")
-            inputs.dir(project(":ui.apps").file("src/main/content/jcr_root/apps/${appId}/clientlibs"))
-            inputs.file(common.recentFileProvider(project(":core").file("target")))
-            outputs.dir("target")
-        }
-        val packageDeploy by registering(SyncFileTask::class) {
-            dependsOn(packageBuild)
-            files.from(common.recentFileProvider("target"))
-            syncFile { awaitIf { packageManager.deploy(it) } }
-        }
-        build {
-            dependsOn(packageBuild)
-        }
-        clean {
-            delete("target")
-        }
+tasks {
+    val packageBuild by registering(MavenExec::class) {
+        dependsOn(":pom", ":core:bundleBuild", ":ui.frontend:clientlibBuild")
+        goals("clean", "install")
+        inputs.dir("src")
+        inputs.file("pom.xml")
+        inputs.dir(project(":ui.apps").file("src/main/content/jcr_root/apps/${appId}/clientlibs"))
+        inputs.file(common.recentFileProvider(project(":core").file("target")))
+        outputs.dir("target")
     }
+    val packageDeploy by registering(SyncFileTask::class) {
+        dependsOn(packageBuild)
+        files.from(common.recentFileProvider("target"))
+        syncFile { awaitIf { packageManager.deploy(it) } }
+    }
+    build { dependsOn(packageBuild) }
+    clean { delete(packageBuild) }
 }

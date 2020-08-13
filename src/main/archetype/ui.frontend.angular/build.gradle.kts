@@ -8,24 +8,23 @@ plugins {
 description = "${appTitle} - UI Frontend"
 
 tasks {
-    val clientlibsPath = "../ui.apps/src/main/content/jcr_root/apps/${appId}/clientlibs"
-    val runNode by registering(MavenExec::class) {
-        goals("clean", "package")
+    val clientlibRoot = "../ui.apps/src/main/content/jcr_root/apps/${appId}/clientlibs"
+    val clientlibBuild by registering(MavenExec::class) {
+        dependsOn(":pom")
+        goals("clean", "install")
         inputs.dir("src")
         inputs.files(fileTree(projectDir) {
             include("*.xml", "*.js", "*.json")
             exclude("package-lock.json")
         })
-        outputs.dirs("dist", clientlibsPath)
+        outputs.dirs("dist", clientlibRoot)
     }
-    build {
-        dependsOn(runNode)
-    }
+    build { dependsOn(clientlibBuild) }
     clean {
         delete(
                 "dist",
-                "$clientlibsPath/clientlib-site",
-                "$clientlibsPath/clientlib-dependencies"
+                "$clientlibRoot/clientlib-site",
+                "$clientlibRoot/clientlib-dependencies"
         )
     }
 }

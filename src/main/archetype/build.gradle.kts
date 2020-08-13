@@ -1,11 +1,13 @@
 import com.cognifide.gradle.aem.bundle.tasks.bundle
 import com.cognifide.gradle.aem.common.instance.local.Source
 import com.cognifide.gradle.aem.common.instance.local.OpenMode
+import com.github.dkorotych.gradle.maven.exec.MavenExec
 
 plugins {
     id("com.cognifide.aem.instance.local")
     id("com.cognifide.environment")
     id("com.neva.fork")
+    id("com.github.dkorotych.gradle-maven-exec")
 }
 
 allprojects {
@@ -16,11 +18,6 @@ allprojects {
         mavenLocal()
         jcenter()
         maven("https://repo.adobe.com/nexus/content/groups/public")
-    }
-
-    tasks.withType<AbstractArchiveTask>().configureEach {
-        archiveBaseName.set(provider { "${rootProject.name}-${project.name}" })
-        destinationDirectory.set(layout.projectDirectory.dir("target"))
     }
 }
 
@@ -116,6 +113,12 @@ tasks {
     instanceCreate { dependsOn(requireProps) }
     environmentUp { mustRunAfter(instanceUp, instanceProvision, instanceSetup) }
     environmentAwait { mustRunAfter(instanceAwait) }
+
+    register<MavenExec>("pom") {
+        goals("clean", "install", "--non-recursive")
+        inputs.file("pom.xml")
+        outputs.dir(file(System.getProperty("user.home")).resolve(".m2/repository/${project.group.toString().replace(".", "/")}/${project.name}"))
+    }
 }
 
 fork {

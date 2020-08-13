@@ -9,25 +9,20 @@ plugins {
 
 description = "${appTitle} - UI content"
 
-aem {
-    tasks {
-        val packageBuild by registering(MavenExec::class) {
-            goals("clean", "install")
-            inputs.dir("src")
-            inputs.file("pom.xml")
-            outputs.dir("target")
-        }
-        val packageDeploy by registering(SyncFileTask::class) {
-            mustRunAfter(":ui.apps:packageDeploy", ":core:bundleInstall")
-            dependsOn(packageBuild)
-            files.from(common.recentFileProvider("target"))
-            syncFile { awaitIf { packageManager.deploy(it) } }
-        }
-        build {
-            dependsOn(packageBuild)
-        }
-        clean {
-            delete("target")
-        }
+tasks {
+    val packageBuild by registering(MavenExec::class) {
+        dependsOn(":pom", ":core:bundleBuild", ":ui.apps:packageBuild")
+        goals("clean", "install")
+        inputs.dir("src")
+        inputs.file("pom.xml")
+        outputs.dir("target")
     }
+    val packageDeploy by registering(SyncFileTask::class) {
+        mustRunAfter(":ui.apps:packageDeploy", ":core:bundleInstall")
+        dependsOn(packageBuild)
+        files.from(common.recentFileProvider("target"))
+        syncFile { awaitIf { packageManager.deploy(it) } }
+    }
+    build { dependsOn(packageBuild) }
+    clean { delete(packageBuild) }
 }

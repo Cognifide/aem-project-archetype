@@ -8,24 +8,19 @@ plugins {
 
 description = "${appTitle} - Core"
 
-aem {
-    tasks {
-        val bundleBuild by registering(MavenExec::class) {
-            goals("clean", "install")
-            inputs.dir("src")
-            inputs.file("pom.xml")
-            outputs.dir("target")
-        }
-        val bundleInstall by registering(SyncFileTask::class) {
-            dependsOn(bundleBuild)
-            files.from(common.recentFileProvider("target"))
-            syncFile { awaitIf { osgi.installBundle(it); true } }
-        }
-        build {
-            dependsOn(bundleBuild)
-        }
-        clean {
-            delete("target")
-        }
+tasks {
+    val bundleBuild by registering(MavenExec::class) {
+        dependsOn(":pom")
+        goals("clean", "install")
+        inputs.dir("src")
+        inputs.file("pom.xml")
+        outputs.dir("target")
     }
+    val bundleInstall by registering(SyncFileTask::class) {
+        dependsOn(bundleBuild)
+        files.from(common.recentFileProvider("target"))
+        syncFile { awaitIf { osgi.installBundle(it); true } }
+    }
+    build { dependsOn(bundleBuild) }
+    clean { delete(bundleBuild) }
 }

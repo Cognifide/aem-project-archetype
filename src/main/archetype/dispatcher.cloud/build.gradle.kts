@@ -9,15 +9,12 @@ description = "${appTitle} - Dispatcher"
 
 tasks {
     val zipBuild by registering(MavenExec::class) {
-        goals("clean", "package")
+        dependsOn(":pom")
+        goals("clean", "install")
         inputs.dir("src")
         inputs.files("pom.xml", "assembly.xml")
         outputs.dir("target")
     }
-    build {
-        dependsOn(zipBuild)
-    }
-    clean {
-        delete("target")
-    }
+    build { dependsOn(zipBuild) }
+    clean { delete(zipBuild) }
 }

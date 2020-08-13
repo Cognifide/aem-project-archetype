@@ -1,3 +1,5 @@
+rootProject.name = "${appId}"
+
 include(":core")
 include(":ui.apps")
 include(":ui.apps.structure")
