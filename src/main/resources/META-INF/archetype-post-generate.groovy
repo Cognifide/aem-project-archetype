@@ -27,6 +27,12 @@ def confFolder = new File("$uiContentPackage/src/main/content/jcr_root/conf/$app
 def contentFolder = new File("$uiContentPackage/src/main/content/jcr_root/content/$appId")
 def varFolder = new File("$uiContentPackage/src/main/content/jcr_root/var")
 
+if (amp == "n"){
+    assert new File(uiAppsPackage, "src/main/content/jcr_root/apps/" + appId + "/components/page/customheadlibs.amp.html").delete()
+    assert new File(uiAppsPackage, "src/main/content/jcr_root/apps/" + appId + "/components/image/clientlibs").deleteDir()
+    assert new File(uiAppsPackage, "src/main/content/jcr_root/apps/" + appId + "/components/tabs/clientlibs").deleteDir()
+}
+
 if (includeErrorHandler == "n") {
     assert new File(uiAppsPackage, "src/main/content/jcr_root/apps/sling").deleteDir()
 }
@@ -83,6 +89,7 @@ if (includeCommerce == "n") {
     assert new File("$appsFolder/config/com.adobe.cq.commerce.graphql.client.impl.GraphqlClientImpl-default.config").delete()
     assert new File("$appsFolder/config/com.adobe.cq.commerce.core.components.internal.services.UrlProviderImpl.config").delete()
     assert new File("$appsFolder/config/com.adobe.cq.commerce.core.components.internal.servlets.SpecificPageFilterFactory-default.config").delete()
+    assert new File("$appsFolder/components/xfpage/_cq_dialog").deleteDir()
     assert new File("$confFolder/cloudconfigs/commerce").deleteDir()
     assert new File("$varFolder").deleteDir();
 
@@ -165,6 +172,10 @@ def cleanUpFrontendModule(frontendModules, optionFrontendModule, rootPom, rootDi
         assert new File("$confFolder/settings/wcm/templates/spa-app-template").deleteDir()
         assert new File("$confFolder/settings/wcm/templates/spa-page-template").deleteDir()
 
+        // Delete SPA template types
+        assert new File("$confFolder/settings/wcm/template-types/spa-app").deleteDir()
+        assert new File("$confFolder/settings/wcm/template-types/spa-page").deleteDir()
+
         // Delete SPA content
         assert new File("$contentFolder/us/en/home").deleteDir()
     }
@@ -172,6 +183,7 @@ def cleanUpFrontendModule(frontendModules, optionFrontendModule, rootPom, rootDi
     // Generating SPA: Delete non-SPA specific files
     if (optionFrontendModule == "angular" || optionFrontendModule == "react") {
         assert new File("$confFolder/settings/wcm/templates/page-content").deleteDir()
+        assert new File("$confFolder/settings/wcm/template-types/page").deleteDir()
     }
 }
 

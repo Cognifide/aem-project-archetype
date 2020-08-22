@@ -70,7 +70,7 @@
             Option to set target AEM version.
         -->
         <requiredProperty key="aemVersion">
-            <defaultValue>6.5.0</defaultValue>
+            <defaultValue>cloud</defaultValue>
             <validationRegex>^(6\.3\.3|6\.4\.4|6\.5\.0|cloud)$</validationRegex>
         </requiredProperty>
         <!--
@@ -85,7 +85,7 @@
             ui.apps content package.
         -->
         <requiredProperty key="includeExamples">
-            <defaultValue>y</defaultValue>
+            <defaultValue>n</defaultValue>
             <validationRegex>^(y|n)$</validationRegex>
         </requiredProperty>
         <!--
@@ -134,6 +134,15 @@
             <defaultValue>y</defaultValue>
             <validationRegex>^(y|n)$</validationRegex>
         </requiredProperty>
+
+        <!--
+            Option to add AMP support
+        -->
+        <requiredProperty key="amp">
+            <defaultValue>n</defaultValue>
+            <validationRegex>^(y|n)$</validationRegex>
+        </requiredProperty>
+
     </requiredProperties>
 
     <modules>
