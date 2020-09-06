@@ -12,5 +12,8 @@ aem {
                 property("cloudManagerTarget", "none")
             }
         }
+        packageDeploy {
+            mustRunAfter(":ui.apps:packageDeploy")
+        }
     }
 }
