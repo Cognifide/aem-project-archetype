@@ -101,3 +101,4 @@ reports/
 
 # Gradle
 !/gradle/wrapper/gradle-wrapper.jar
+gradle.user.properties
