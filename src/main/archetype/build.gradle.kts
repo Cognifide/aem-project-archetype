@@ -42,6 +42,12 @@ allprojects {
         }
     }
 
+    plugins.withId("com.cognifide.aem.package") {
+        tasks.withType<PackageDeploy>().configureEach {
+            dependsOn(":requireProps")
+        }
+    }
+
     plugins.withId("com.cognifide.aem.bundle") {
         tasks {
             withType<Jar> {
