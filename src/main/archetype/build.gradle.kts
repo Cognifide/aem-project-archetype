@@ -1,4 +1,5 @@
 import com.cognifide.gradle.aem.bundle.tasks.bundle
+import com.cognifide.gradle.aem.common.tasks.SyncFileTask
 import com.github.dkorotych.gradle.maven.exec.MavenExec
 
 plugins {
@@ -15,6 +16,12 @@ allprojects {
         mavenLocal()
         jcenter()
         maven("https://repo.adobe.com/nexus/content/groups/public")
+    }
+
+    plugins.withId("com.cognifide.aem.common") {
+        tasks.withType<SyncFileTask>().configureEach {
+            dependsOn(":requireProps")
+        }
     }
 }
 
