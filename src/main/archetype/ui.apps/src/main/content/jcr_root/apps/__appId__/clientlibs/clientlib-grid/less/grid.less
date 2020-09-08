@@ -25,15 +25,20 @@
 }
 
 /* phone breakpoint */
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .aem-Grid {
     .generate-grid(phone, @max_col);
   }
 }
 
 /* tablet breakpoint */
-@media (min-width: 651px) and (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1200px) {
   .aem-Grid {
     .generate-grid(tablet, @max_col);
   }
+}
+
+/* force showing hidden components in unhide mode */
+.aem-GridShowHidden > .cmp-container > .aem-Grid > .aem-GridColumn {
+  display: block !important;
 }
