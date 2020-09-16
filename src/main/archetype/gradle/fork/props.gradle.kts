@@ -133,7 +133,7 @@ configure<ForkExtension> {
             define("packageValidatorEnabled") {
                 label = "Validator Enabled"
                 description = "Turns on/off package validation using OakPAL."
-                checkbox(true)
+                checkbox(false)
             }
             define("packageNestedValidation") {
                 label = "Nested Validation"
