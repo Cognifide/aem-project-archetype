@@ -19,7 +19,7 @@
 
     <groupId>com.cognifide.aem</groupId>
     <artifactId>aem-project-archetype-hybrid</artifactId>
-    <version>24</version>
+    <version>24-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>AEM Multi-Module Archetype</name>
