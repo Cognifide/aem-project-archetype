@@ -24,13 +24,13 @@
 
     <name>AEM Multi-Module Archetype</name>
     <description>AEM multi-module archetype.</description>
-    <url>https://github.com/adobe/aem-project-archetype/</url>
+    <url>https://github.com/Cognifide/aem-project-archetype/</url>
 
     <scm>
         <connection>scm:git:https://github.com/Cognifide/aem-project-archetype.git</connection>
         <developerConnection>scm:git:git@github.com:Cognifide/aem-project-archetype.git</developerConnection>
         <url>https://github.com/Cognifide/aem-project-archetype/tree/master/</url>
-        <tag>HEAD</tag>
+        <tag>aem-project-archetype-24-dual</tag>
     </scm>
     <licenses>
         <license>
