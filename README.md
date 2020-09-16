@@ -1,7 +1,5 @@
 # AEM Project Archetype
 
-[![CircleCI](https://circleci.com/gh/adobe/aem-project-archetype.svg?style=svg)](https://circleci.com/gh/adobe/aem-project-archetype)
-
 Gradle empowered Maven template that creates a minimal, best-practices-based Adobe Experience Manager (AEM) project as a starting point for your website.
 
 ## Gradle build
