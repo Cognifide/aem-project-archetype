@@ -3,20 +3,18 @@ import com.github.dkorotych.gradle.maven.exec.MavenExec
 
 plugins {
     id("com.cognifide.aem.common")
+    id("com.cognifide.aem.package.sync")
     id("com.github.dkorotych.gradle-maven-exec")
 }
 
-description = "${appTitle} - All"
+description = "${appTitle} - UI config"
 
 tasks {
     val packageBuild by registering(MavenExec::class) {
-        dependsOn(":pom", ":core:bundleBuild", ":ui.config:packageBuild", ":ui.apps:packageBuild", ":ui.content:packageBuild")
+        dependsOn(":pom", ":ui.apps.structure:packageBuild")
         goals("clean", "install")
         inputs.dir("src")
         inputs.file("pom.xml")
-        inputs.file(common.recentFileProvider(project(":ui.config").file("target")))
-        inputs.file(common.recentFileProvider(project(":ui.apps").file("target")))
-        inputs.file(common.recentFileProvider(project(":ui.content").file("target")))
         outputs.dir("target")
     }
     val packageDeploy by registering(SyncFileTask::class) {
