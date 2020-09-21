@@ -11,7 +11,7 @@ description = "${appTitle} - UI apps"
 
 tasks {
     val packageBuild by registering(MavenExec::class) {
-        dependsOn(":pom", ":core:bundleBuild", ":ui.frontend:clientlibBuild")
+        dependsOn(":pom", ":ui.apps.structure:packageBuild", ":core:bundleBuild", ":ui.frontend:clientlibBuild")
         goals("clean", "install")
         inputs.dir("src")
         inputs.file("pom.xml")
