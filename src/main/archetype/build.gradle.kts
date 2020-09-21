@@ -55,6 +55,7 @@ aem {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
             configureReplicationAgentAuthor("publish") { enable(publishInstance) }
             configureReplicationAgentPublish("flush") { enable("http://localhost:80/dispatcher/invalidate.cache") }
+            deployPackage("com.adobe.cq:core.wcm.components.all:2.11.1@zip")
             deployPackage("com.neva.felix:search-webconsole-plugin:1.3.0")
         }
     }
