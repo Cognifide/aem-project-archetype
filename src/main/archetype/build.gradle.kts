@@ -80,9 +80,9 @@ allprojects {
             "compileOnly"("javax.annotation:javax.annotation-api:1.3.2")
             "compileOnly"("javax.jcr:jcr:2.0")
             "compileOnly"("com.day.cq.wcm:cq-wcm-taglib:5.7.4")
-            "compileOnly"("com.adobe.cq:core.wcm.components.core:${core.wcm.components.version}")
-            "compileOnly"("com.adobe.cq:core.wcm.components.content:${core.wcm.components.version}")
-            "compileOnly"("com.adobe.cq:core.wcm.components.config:${core.wcm.components.version}")
+            "compileOnly"("com.adobe.cq:core.wcm.components.core:2.11.1")
+            "compileOnly"("com.adobe.cq:core.wcm.components.content:2.11.1")
+            "compileOnly"("com.adobe.cq:core.wcm.components.config:2.11.1")
             "compileOnly"("com.adobe.aem:uber-jar:$aemVersion:apis")
             #else
             "compileOnly"("com.adobe.aem:aem-sdk-api:SDK_VERSION")
@@ -134,6 +134,7 @@ aem {
         provisioner { // https://github.com/Cognifide/gradle-aem-plugin/blob/master/docs/instance-plugin.md#task-instanceprovision
             configureReplicationAgentAuthor("publish") { enable(publishInstance) }
             configureReplicationAgentPublish("flush") { enable("http://localhost:80/dispatcher/invalidate.cache") }
+            deployPackage("com.adobe.cq:core.wcm.components.all:2.11.1@zip")
             deployPackage("com.neva.felix:search-webconsole-plugin:1.3.0")
         }
     }
