@@ -10,6 +10,7 @@ def uiContentPackage = new File(rootDir, "ui.content")
 def uiConfigPackage = new File(rootDir, "ui.config")
 def coreBundle = new File(rootDir, "core")
 def rootPom = new File(rootDir, "pom.xml")
+def rootGradle = new File(rootDir, "build.gradle.kts")
 def frontendModules = ["general", "angular", "react"]
 
 def singleCountry = request.getProperties().get("singleCountry")
@@ -64,6 +65,7 @@ if (aemVersion == "cloud") {
     }
     println "Using AEM as a Cloud Service SDK version: " + sdkVersion
     rootPom.text = rootPom.text.replaceAll('SDK_VERSION', sdkVersion.toString())
+    rootGradle.text = rootGradle.text.replaceAll('SDK_VERSION', sdkVersion.toString())
 }
 
 buildContentSkeleton(uiContentPackage, uiAppsPackage, singleCountry, appId, language, country)
