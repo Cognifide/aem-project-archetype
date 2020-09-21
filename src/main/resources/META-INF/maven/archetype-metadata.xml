@@ -399,6 +399,12 @@
                         <include>**/*.config</include>
                     </includes>
                 </fileSet>
+                <fileSet filtered="true" packaged="false">
+                    <directory></directory>
+                    <includes>
+                        <include>build.gradle.kts</include>
+                    </includes>
+                </fileSet>
             </fileSets>
         </module>
         <module id="${rootArtifactId}.ui.content" dir="ui.content" name="ui.content">
