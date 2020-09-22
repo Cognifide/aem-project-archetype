@@ -81,10 +81,8 @@ allprojects {
             "compileOnly"("javax.jcr:jcr:2.0")
             "compileOnly"("com.day.cq.wcm:cq-wcm-taglib:5.7.4")
             "compileOnly"("com.adobe.cq:core.wcm.components.core:2.11.1")
-            "compileOnly"("com.adobe.cq:core.wcm.components.content:2.11.1")
-            "compileOnly"("com.adobe.cq:core.wcm.components.config:2.11.1")
             "compileOnly"("com.adobe.aem:uber-jar:$aemVersion:apis")
-            #else
+#else
             "compileOnly"("com.adobe.aem:aem-sdk-api:SDK_VERSION")
 #end
         }

@@ -5,7 +5,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.cognifide.gradle:aem-plugin:14.4.1")
+    implementation("com.cognifide.gradle:aem-plugin:14.4.5")
     implementation("org.apache.sling:org.apache.sling.caconfig.bnd-plugin:1.0.2")
     implementation("org.apache.sling:org.apache.sling.bnd.models:1.0.0")
 
