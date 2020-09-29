@@ -542,8 +542,6 @@
         <include>gradlew</include>
         <include>gradlew.bat</include>
         <include>gradle/**</include>
-        <include>hosts</include>
-        <include>hosts.bat</include>
       </includes>
     </fileSet>
   </fileSets>
